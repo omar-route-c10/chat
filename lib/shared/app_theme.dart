@@ -3,29 +3,26 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static const Color primaryColor = Color(0xFF5D9CEC);
   static const Color blackColor = Color(0xFF141922);
-  static const Color greyColor = Color(0xFFC8C9CB);
+  static const Color greyColor = Color(0xFF7F7F7F);
   static const Color whiteColor = Color(0xFFFFFFFF);
 
   static ThemeData lightTheme = ThemeData(
     primaryColor: primaryColor,
     appBarTheme: const AppBarTheme(
-      backgroundColor: primaryColor,
+      backgroundColor: Colors.transparent,
       titleTextStyle: TextStyle(
         color: whiteColor,
         fontWeight: FontWeight.bold,
-        fontSize: 22,
+        fontSize: 20,
       ),
+      centerTitle: true,
+      foregroundColor: whiteColor,
     ),
     scaffoldBackgroundColor: whiteColor,
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: primaryColor,
       foregroundColor: whiteColor,
-      shape: CircleBorder(
-        side: BorderSide(
-          color: whiteColor,
-          width: 4,
-        ),
-      ),
+      shape: CircleBorder(),
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
@@ -37,6 +34,11 @@ class AppTheme {
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
+      hintStyle: const TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: greyColor,
+      ),
       enabledBorder: UnderlineInputBorder(
         borderSide: BorderSide(
           color: greyColor.withOpacity(0.8),
@@ -64,11 +66,16 @@ class AppTheme {
       bodyMedium: TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.bold,
-        color: primaryColor,
+        color: blackColor,
       ),
       bodySmall: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w600,
+        color: blackColor,
+      ),
+      displaySmall: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
         color: blackColor,
       ),
     ),

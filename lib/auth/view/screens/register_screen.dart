@@ -29,13 +29,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text(
-          'Create Account',
-          style:
-              Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 20),
-        ),
-        backgroundColor: Colors.transparent,
-        centerTitle: true,
+        title: const Text('Create Account'),
       ),
       body: Container(
         width: double.infinity,
