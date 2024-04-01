@@ -1,3 +1,4 @@
+import 'package:chat/shared/widgets/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -13,7 +14,7 @@ class UIUtils {
               child: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircularProgressIndicator(),
+                  LoadingIndicator(),
                 ],
               ),
             ),
@@ -23,7 +24,7 @@ class UIUtils {
 
   static void hideLoading(BuildContext context) => Navigator.of(context).pop();
 
-  static void showError(String message) {
+  static void showMessage(String message) {
     Fluttertoast.showToast(
       msg: message,
       toastLength: Toast.LENGTH_SHORT,

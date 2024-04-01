@@ -93,7 +93,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           .pushReplacementNamed(HomeScreen.routeName);
                     } else if (state is RegisterError) {
                       UIUtils.hideLoading(context);
-                      UIUtils.showError(state.message);
+                      UIUtils.showMessage(state.message);
                     }
                   },
                   child: DefaultElevatedButton(

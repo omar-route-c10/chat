@@ -87,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           .pushReplacementNamed(HomeScreen.routeName);
                     } else if (state is LoginError) {
                       UIUtils.hideLoading(context);
-                      UIUtils.showError(state.message);
+                      UIUtils.showMessage(state.message);
                     }
                   },
                   child: DefaultElevatedButton(

@@ -4,6 +4,7 @@ import 'package:chat/auth/view/screens/register_screen.dart';
 import 'package:chat/firebase_options.dart';
 import 'package:chat/home_screen.dart';
 import 'package:chat/rooms/view/screens/create_room_screen.dart';
+import 'package:chat/shared/app_bloc_observer.dart';
 import 'package:chat/shared/app_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  Bloc.observer = AppBlocObserver();
   runApp(
     BlocProvider(
       create: (_) => AuthViewModel(),
