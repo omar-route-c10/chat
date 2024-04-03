@@ -1,5 +1,5 @@
 import 'package:chat/auth/view_model/auth_states.dart';
-import 'package:chat/models/user_model.dart';
+import 'package:chat/auth/data/models/user_model.dart';
 import 'package:chat/shared/database_utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

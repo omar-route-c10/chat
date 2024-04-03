@@ -1,7 +1,8 @@
+import 'package:chat/chat/data/models/message_model.dart';
 import 'package:chat/rooms/data/models/room_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:chat/models/user_model.dart';
+import 'package:chat/auth/data/models/user_model.dart';
 
 class DatabaseUtils {
   static CollectionReference<UserModel> getUsersCollection() =>
@@ -16,6 +17,18 @@ class DatabaseUtils {
             fromFirestore: (snapshot, _) =>
                 RoomModel.fromJson(snapshot.data()!),
             toFirestore: (roomModel, _) => roomModel.toJson(),
+          );
+
+  static CollectionReference<MessageModel> getMessagesCollection(
+    String roomId,
+  ) =>
+      getRoomsCollection()
+          .doc(roomId)
+          .collection('messages')
+          .withConverter<MessageModel>(
+            fromFirestore: (snapshot, _) =>
+                MessageModel.fromJson(snapshot.data()!),
+            toFirestore: (messageModel, _) => messageModel.toJson(),
           );
 
   static Future<UserModel> register({
@@ -66,5 +79,26 @@ class DatabaseUtils {
     final roomsCollection = getRoomsCollection();
     final querySnapshot = await roomsCollection.get();
     return querySnapshot.docs.map((docSnapshot) => docSnapshot.data()).toList();
+  }
+
+  static Future<void> insertMessageToRoom(MessageModel message) async {
+    final messagesCollection = getMessagesCollection(message.roomId);
+    final doc = messagesCollection.doc();
+    message.id = doc.id;
+    return doc.set(message);
+  }
+
+  static Stream<List<MessageModel>> getRoomMessages(String roomId) {
+    final messagesCollection = getMessagesCollection(roomId);
+    return messagesCollection
+        .orderBy('dateTime', descending: true)
+        .snapshots()
+        .map(
+          (querySnapshot) => querySnapshot.docs
+              .map(
+                (docSnapshot) => docSnapshot.data(),
+              )
+              .toList(),
+        );
   }
 }

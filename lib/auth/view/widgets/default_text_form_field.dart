@@ -22,7 +22,7 @@ class DefaultTextFormField extends StatefulWidget {
 }
 
 class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
-  bool isObscure = false;
+  bool isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
               )
             : null,
       ),
-      obscureText: isObscure,
+      obscureText: widget.isPassword ? isObscure : false,
       maxLines: widget.maxLines,
       validator: widget.validator,
       autovalidateMode: AutovalidateMode.onUserInteraction,
