@@ -7,6 +7,7 @@ import 'package:chat/home_screen.dart';
 import 'package:chat/rooms/view/screens/create_room_screen.dart';
 import 'package:chat/shared/app_bloc_observer.dart';
 import 'package:chat/shared/app_theme.dart';
+import 'package:chat/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,13 +32,13 @@ class ChatApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
+        SplashScreen.routeName: (_) => SplashScreen(),
         HomeScreen.routeName: (_) => HomeScreen(),
         LoginScreen.routeName: (_) => LoginScreen(),
         RegisterScreen.routeName: (_) => RegisterScreen(),
         CreateRoomScreen.routeName: (_) => CreateRoomScreen(),
         ChatScreen.routeName: (_) => ChatScreen(),
       },
-      initialRoute: LoginScreen.routeName,
       themeMode: ThemeMode.light,
       theme: AppTheme.lightTheme,
     );

@@ -59,13 +59,25 @@ class DatabaseUtils {
       email: email,
       password: password,
     );
+    final user = await _getUser(credentials.user!.uid);
+    return user;
+  }
+
+  static Future<UserModel> _getUser(String id) async {
     final usersCollection = getUsersCollection();
-    final docSnapshot = await usersCollection.doc(credentials.user!.uid).get();
+    final docSnapshot = await usersCollection.doc(id).get();
     return docSnapshot.data()!;
   }
 
   static Future<void> logout() {
     return FirebaseAuth.instance.signOut();
+  }
+
+  static Future<UserModel?> getCurrentUser() async {
+    final firebaseUser = FirebaseAuth.instance.currentUser;
+    if (firebaseUser == null) return null;
+    final user = _getUser(firebaseUser.uid);
+    return user;
   }
 
   static Future<void> createRoom(RoomModel room) async {

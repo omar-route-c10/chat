@@ -21,3 +21,17 @@ class RegisterError extends AuthState {
 
   RegisterError(this.message);
 }
+
+class LogoutLoading extends AuthState {}
+
+class LogoutSuccess extends AuthState {}
+
+class LogoutError extends AuthState {
+  final String message;
+
+  LogoutError(this.message);
+}
+
+class IsLoggedIn extends AuthState {}
+
+class NotLoggedIn extends AuthState {}

@@ -41,4 +41,28 @@ class AuthViewModel extends Cubit<AuthState> {
       emit(LoginError(error.toString()));
     }
   }
+
+  Future<void> logout() async {
+    emit(LogoutLoading());
+    try {
+      await DatabaseUtils.logout();
+      currentUser = null;
+      emit(LogoutSuccess());
+    } catch (error) {
+      emit(LogoutError(error.toString()));
+    }
+  }
+
+  Future<void> getCurrentUser() async {
+    try {
+      currentUser = await DatabaseUtils.getCurrentUser();
+      if (currentUser != null) {
+        emit(IsLoggedIn());
+      } else {
+        emit(NotLoggedIn());
+      }
+    } catch (_) {
+      emit(NotLoggedIn());
+    }
+  }
 }
